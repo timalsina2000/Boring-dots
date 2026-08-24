@@ -1,9 +1,28 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Home() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const [seconds, setSeconds] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setSeconds((prev) => prev + 1);
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const formatTime = (totalSeconds: number) => {
+    const hrs = Math.floor(totalSeconds / 3600);
+    const mins = Math.floor((totalSeconds % 3600) / 60);
+    const secs = totalSeconds % 60;
+    const pad = (num: number) => String(num).padStart(2, "0");
+    if (hrs > 0) {
+      return `${pad(hrs)}:${pad(mins)}:${pad(secs)}`;
+    }
+    return `${pad(mins)}:${pad(secs)}`;
+  };
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -243,6 +262,9 @@ export default function Home() {
 
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-black select-none touch-none">
+      <div className="absolute top-6 right-6 text-white font-mono text-xs md:text-sm pointer-events-none select-none z-10 opacity-70 tracking-wider">
+        you are here from {formatTime(seconds)}
+      </div>
       <canvas
         ref={canvasRef}
         className="block w-full h-full"
