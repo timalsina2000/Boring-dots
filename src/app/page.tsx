@@ -52,7 +52,7 @@ export default function Home() {
     const ball = {
       x: 0,
       y: 0,
-      radius: 5,
+      radius: 55,
       vx: 0,
       vy: 0,
       squishX: 1,
@@ -262,8 +262,19 @@ export default function Home() {
 
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-black select-none touch-none">
-      <div className="absolute top-6 right-6 text-white font-mono text-xs md:text-sm pointer-events-none select-none z-10 opacity-70 tracking-wider">
-        you are here from {formatTime(seconds)}
+      <div
+        className="absolute top-8 sm:top-12 md:top-16 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none select-none z-10 text-center"
+        style={{
+          fontFamily:
+            '-apple-system, BlinkMacSystemFont, "SF Pro Rounded", "SF Pro Display", ui-rounded, "Nunito", "Segoe UI Rounded", system-ui, sans-serif',
+        }}
+      >
+        <span className="text-white/80 font-medium text-sm sm:text-base md:text-lg tracking-wide">
+          you are here from
+        </span>
+        <span className="text-white text-6xl sm:text-8xl md:text-9xl font-bold tracking-tight leading-none mt-1 sm:mt-2 tabular-nums drop-shadow-[0_2px_16px_rgba(255,255,255,0.15)]">
+          {formatTime(seconds)}
+        </span>
       </div>
       <canvas
         ref={canvasRef}
