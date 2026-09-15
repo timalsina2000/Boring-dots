@@ -52,7 +52,7 @@ export default function Home() {
     const ball = {
       x: 0,
       y: 0,
-      radius: 55,
+      radius: 27.5,
       vx: 0,
       vy: 0,
       squishX: 1,
